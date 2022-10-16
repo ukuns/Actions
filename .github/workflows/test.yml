@@ -33,6 +33,7 @@ jobs:
           git clone ${{ secrets.REPO }}
           mv mimotion/manual.py manual.py
           rm -r mimotion
+          ls
           
       - name: 开始
         run: |
