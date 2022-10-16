@@ -36,4 +36,15 @@ jobs:
           pip3 install requests
           user='${{ secrets.USER }}'
           passwd='${{ secrets.PWD }}'
-          python3 manual.py ${user} ${passwd}
+          skey='NO'
+          sckey='NO'
+          position='NO'
+          corpid='NO'
+          corpsecret='NO'
+          agentid='NO'
+          touser='NO'
+          toparty='NO'
+          totag='NO'
+          open_get_weather='NO'
+          area='NO'
+          python3 manual.py ${user} ${passwd} ${skey} ${sckey} ${position} ${corpid} ${corpsecret} ${agentid} ${touser} ${toparty} ${totag} ${open_get_weather} ${area}
