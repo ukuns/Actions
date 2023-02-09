@@ -39,12 +39,12 @@ jobs:
           else
             echo "Branch exist"
           fi
-             
+           
           if git ls-remote --exit-code --heads "{{ secrets.REPO }}" "$branch"
           then
-              echo "REMOTE BRANCH EXISTS"
+            echo "REMOTE BRANCH EXISTS"
           else
-              echo "REMOTE BRANCH NOT FOUND"
+            echo "REMOTE BRANCH NOT FOUND"
           fi
       
 #       - name: Checkout codes
