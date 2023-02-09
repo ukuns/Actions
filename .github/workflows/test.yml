@@ -29,7 +29,7 @@ jobs:
           echo $branch
           echo ${branch}
           git clone ${{ secrets.REPO }}
-          git ls-remote --heads --exit-code ${{ secrets.REPO }} $branch >/dev/null
+          git ls-remote --heads --exit-code ${{ secrets.REPO }} $BRANCH >/dev/null
           if [ "$?" == "1" ]
           then 
             echo "Branch doesn't exist"; 
