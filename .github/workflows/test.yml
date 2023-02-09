@@ -1,10 +1,10 @@
 name: Run Step
 
 on:
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   #schedule:
   #  - cron: '0 7 * * *'
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
       - name: Test git for actions
         shell: bash
         run: |
-          BRANCH=v1
+          BRANCH=${GITHUB_REF}
           echo $BRANCH
           echo ${BRANCH}
           branch=${BRANCH}
@@ -40,7 +40,7 @@ jobs:
             echo "Branch exist"
           fi
            
-          if git ls-remote --exit-code --heads "{{ secrets.REPO }}" "$branch"
+          if git ls-remote --exit-code --heads "${{ secrets.REPO }}" "$branch"
           then
             echo "REMOTE BRANCH EXISTS"
           else
