@@ -24,7 +24,7 @@ jobs:
       - name: Test git for actions
         shell: bash
         run: |
-          BRANCH=${{ github.event.inputs.branches }}
+          BRANCH=v1
           echo $BRANCH
           echo ${BRANCH}
           branch=${BRANCH}
