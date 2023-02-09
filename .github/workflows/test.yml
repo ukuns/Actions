@@ -8,6 +8,8 @@ on:
   #schedule:
   #  - cron: '0 7 * * *'
   workflow_dispatch:
+    inputs:
+      branches:
 
 
 jobs:
@@ -22,7 +24,7 @@ jobs:
       - name: Test git for actions
         shell: bash
         run: |
-          BRANCH=v1
+          BRANCH=${{ github.event.inputs.branches }}
           echo $BRANCH
           echo ${BRANCH}
           branch=${BRANCH}
@@ -38,14 +40,14 @@ jobs:
             echo "Branch exist"
           fi
           
-          if [ git ls-remote --heads --exit-code ${{ secrets.REPO }} $branch ]
+          if [[ git ls-remote --heads --exit-code ${{ secrets.REPO }} $branch ]]
           then
             echo "Branch exist"
           else
             echo "Branch doesn't exist"
           fi
           
-          if git ls-remote --exit-code --heads "${{ secrets.REPO }}" "$branch"
+          if git ls-remote --exit-code --heads ${{ secrets.REPO }} $branch
           then
               echo "REMOTE BRANCH EXISTS"
           else
