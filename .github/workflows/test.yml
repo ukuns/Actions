@@ -29,10 +29,13 @@ jobs:
           echo $branch
           echo ${branch}
           git clone ${{ secrets.REPO }}
-          git ls-remote --heads --exit-code ${{ secrets.REPO }} $BRANCH >/dev/null
+          git ls-remote --heads --exit-code ${{ secrets.REPO }} $branch >/dev/null
+          echo $?
           if [ "$?" == "1" ]
           then 
-            echo "Branch doesn't exist"; 
+            echo "Branch doesn't exist"
+          else
+            echo "Branch exist"
           fi
       
 #       - name: Checkout codes
