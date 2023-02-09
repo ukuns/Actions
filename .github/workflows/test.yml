@@ -27,7 +27,7 @@ jobs:
           BRANCH=${GITHUB_REF##*/}
           echo $BRANCH
           echo ${BRANCH}
-          branch=${BRANCH}
+          branch=v1
           echo $branch
           echo ${branch}
           git clone ${{ secrets.REPO }}
