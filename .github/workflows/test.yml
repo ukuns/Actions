@@ -39,15 +39,8 @@ jobs:
           else
             echo "Branch exist"
           fi
-          
-          if [[ git ls-remote --heads --exit-code ${{ secrets.REPO }} "$branch" ]]
-          then
-            echo "Branch exist"
-          else
-            echo "Branch doesn't exist"
-          fi
-          
-          if git ls-remote --exit-code --heads ${{ secrets.REPO }} "$branch"
+             
+          if git ls-remote --exit-code --heads "{{ secrets.REPO }}" "$branch"
           then
               echo "REMOTE BRANCH EXISTS"
           else
