@@ -18,37 +18,45 @@ jobs:
     steps:
       - name: Checkout codes
         uses: actions/checkout@v2
-      - name: Update system and install zsh
-        run: |
-          sudo -E apt-get -qq update
-          sudo -E apt-get install zsh -y
-          
-      - name: 初始化Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.8
-
-      - name: Clone Run Step
+        
+      - name: Test git for actions
         run: |
           git clone ${{ secrets.REPO }}
-          mv mimotion/manual.py manual.py
-          rm -r mimotion
-          ls
+          git ls-remote --heads --exit-code ${{ secrets.REPO }}
+      
+#       - name: Checkout codes
+#         uses: actions/checkout@v2
+#       - name: Update system and install zsh
+#         run: |
+#           sudo -E apt-get -qq update
+#           sudo -E apt-get install zsh -y
           
-      - name: 开始
-        run: |
-          pip3 install requests
-          user='${{ secrets.USER }}'
-          passwd='${{ secrets.PWD }}'
-          skey='NO'
-          sckey='NO'
-          position='NO'
-          corpid='NO'
-          corpsecret='NO'
-          agentid='NO'
-          touser='NO'
-          toparty='NO'
-          totag='NO'
-          open_get_weather='NO'
-          area='NO'
-          python3 manual.py ${user} ${passwd} ${skey} ${sckey} ${position} ${corpid} ${corpsecret} ${agentid} ${touser} ${toparty} ${totag} ${open_get_weather} ${area}
+#       - name: 初始化Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: 3.8
+
+#       - name: Clone Run Step
+#         run: |
+#           git clone ${{ secrets.REPO }}
+#           mv mimotion/manual.py manual.py
+#           rm -r mimotion
+#           ls
+          
+#       - name: 开始
+#         run: |
+#           pip3 install requests
+#           user='${{ secrets.USER }}'
+#           passwd='${{ secrets.PWD }}'
+#           skey='NO'
+#           sckey='NO'
+#           position='NO'
+#           corpid='NO'
+#           corpsecret='NO'
+#           agentid='NO'
+#           touser='NO'
+#           toparty='NO'
+#           totag='NO'
+#           open_get_weather='NO'
+#           area='NO'
+#           python3 manual.py ${user} ${passwd} ${skey} ${sckey} ${position} ${corpid} ${corpsecret} ${agentid} ${touser} ${toparty} ${totag} ${open_get_weather} ${area}
