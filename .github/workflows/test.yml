@@ -21,8 +21,11 @@ jobs:
         
       - name: Test git for actions
         run: |
+          BRANCH=v1
+          echo $BRANCH
+          echo '${BRANCH}'
           git clone ${{ secrets.REPO }}
-          git ls-remote --heads --exit-code ${{ secrets.REPO }}
+          git ls-remote --heads --exit-code ${{ secrets.REPO }} $BRANCH
       
 #       - name: Checkout codes
 #         uses: actions/checkout@v2
