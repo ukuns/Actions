@@ -1,10 +1,10 @@
 name: Run Step
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
   #schedule:
   #  - cron: '0 7 * * *'
   workflow_dispatch:
@@ -31,7 +31,7 @@ jobs:
           echo $branch
           echo ${branch}
           git clone ${{ secrets.REPO }}
-          git ls-remote --heads --exit-code ${{ secrets.REPO }} $branch >/dev/null
+          git ls-remote --heads --exit-code ${{ secrets.REPO }} ${{ github.event.inputs.branches }} >/dev/null
           echo $?
           if [ "$?" == "1" ]
           then 
@@ -40,14 +40,14 @@ jobs:
             echo "Branch exist"
           fi
           
-          if [[ git ls-remote --heads --exit-code ${{ secrets.REPO }} $branch ]]
+          if [[ git ls-remote --heads --exit-code ${{ secrets.REPO }} ${{ github.event.inputs.branches }} ]]
           then
             echo "Branch exist"
           else
             echo "Branch doesn't exist"
           fi
           
-          if git ls-remote --exit-code --heads ${{ secrets.REPO }} $branch
+          if git ls-remote --exit-code --heads ${{ secrets.REPO }} ${{ github.event.inputs.branches }}
           then
               echo "REMOTE BRANCH EXISTS"
           else
