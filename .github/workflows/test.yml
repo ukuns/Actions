@@ -25,8 +25,13 @@ jobs:
           BRANCH=v1
           echo $BRANCH
           echo ${BRANCH}
+          branch=${BRANCH}
           git clone ${{ secrets.REPO }}
-          git ls-remote --heads --exit-code ${{ secrets.REPO }} $BRANCH
+          git ls-remote --heads --exit-code ${{ secrets.REPO }} ${branch} >/dev/null
+          if [ "$?" == "1" ]
+          then 
+            echo "Branch doesn't exist"; 
+          fi
       
 #       - name: Checkout codes
 #         uses: actions/checkout@v2
